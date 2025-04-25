@@ -59,10 +59,8 @@ async function createStakeTransaction(
   transaction.lastValidBlockHeight = lastValidBlockHeight;
   transaction.feePayer = owner.publicKey;
 
-  // Partial sign with all new stake accounts
-  transaction.partialSign(...stakeAccounts);
-  // Sign with owner
-  transaction.sign(owner);
+  // Sign with owner and all new stake accounts
+  transaction.sign(owner, ...stakeAccounts);
 
   return {
     transaction,
